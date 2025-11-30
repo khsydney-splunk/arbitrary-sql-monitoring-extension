@@ -74,12 +74,14 @@ metric-path
 
 Make sure this section has **your Database jdbc.jar** as below: (cachejdbc.jar is an exampple and replace with your jar and make sure it's under **$AGENT_HOME/monitors/ArbitrarySQLMonitor/lib** ) and it has slf4j-api-1.7.36.jar for logging into machine-agent.log from ArbitrarySqlMonitor
 
+```
 <java-task>
       <classpath>
         SqlMonitor.jar:lib/commons-lang-2.4.jar:lib/machineagent.jar:lib/cachejdbc.jar:lib/slf4j-api-1.7.36.jar
       </classpath>
       <impl-class>com.singularity.ee.agent.systemagent.monitors.ArbitrarySqlMonitor</impl-class>
 </java-task>
+```
 
 ## JDBC Driver Reference ##
 
