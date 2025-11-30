@@ -13,19 +13,6 @@
     <execution-frequency-in-seconds>60</execution-frequency-in-seconds>
     <execution-timeout-in-secs>60</execution-timeout-in-secs>
 
-    <!--
-
-    Make sure you change the following arguments. See README.md for more information.
-
-    driver-class: Class name of the JDBC driver to use. Make sure to also include the driver in the classpath.
-    url: JDBC URL to the database.
-    username: Database user ID.
-    password: Password.
-    metric-path: Optional path in the metric tree where the metrics should be placed.
-    sql: The query to be executed.
-
-    -->
-
     <task-arguments>
       <argument name="driver-class" is-required="false" default-value="com.intersys.jdbc.CacheDriver" />
       <argument name="url" is-required="true" default-value="jdbc:Cache://10.90.10.48:56772/TRAIN-TRAK" />
@@ -33,9 +20,10 @@
       <argument name="password" is-required="false" default-value="PvFUJM02ZQ4rULz" />
       <argument name="sql" is-required="false" default-value="SELECT 1" />
     </task-arguments>
+
     <java-task>
       <classpath>
-        SqlMonitor.jar:lib/commons-lang-2.4.jar:lib/commons-logging-1.1.1.jar:lib/machineagent.jar:lib/cachejdbc.jar
+        SqlMonitor.jar:lib/commons-lang-2.4.jar:lib/machineagent.jar:lib/cachejdbc.jar:lib/slf4j-api-1.7.36.jar
       </classpath>
       <impl-class>com.singularity.ee.agent.systemagent.monitors.ArbitrarySqlMonitor</impl-class>
     </java-task>

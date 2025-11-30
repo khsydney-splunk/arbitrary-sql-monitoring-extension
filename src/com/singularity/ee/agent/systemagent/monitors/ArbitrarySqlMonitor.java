@@ -7,8 +7,10 @@ import com.singularity.ee.agent.systemagent.api.TaskOutput;
 import com.singularity.ee.agent.systemagent.api.exception.TaskExecutionException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 
 import java.sql.*;
 import java.util.HashMap;
@@ -16,7 +18,7 @@ import java.util.Map;
 
 public class ArbitrarySqlMonitor extends AManagedMonitor
 {
-    private static final Log logger = LogFactory.getLog(ArbitrarySqlMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(ArbitrarySqlMonitor.class);
 
     private boolean cleanFieldNames;
     private String driverClass;
@@ -164,7 +166,7 @@ public class ArbitrarySqlMonitor extends AManagedMonitor
         }
         catch (IllegalArgumentException e)
         {
-            logger.fatal("Required parameter not specified in monitor.xml: " + e.getMessage());
+            logger.error("Required parameter not specified in monitor.xml: " + e.getMessage());
             return null;
         }
         finally
