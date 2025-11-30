@@ -34,11 +34,14 @@ This extension requires the Java Machine Agent.
 6. In `$AGENT_HOME/monitors/ArbitrarySQLMonitor`, edit the file monitor.xml by following instruction below.
 7. Find the right JDBC driver to connect Database and copy jarfile into `$AGENT_HOME/monitors/ArbitrarySQLMonitor/lib`.
 8. From `$AGENT_HOME/monitors/ArbitrarySQLMonitor/`, Run command `mkdir -p build/classes`
-9. Run command ```javac \
+9. Run command 
+```
+javac \
   --release 11 \
   -cp "lib/commons-lang-2.4.jar:lib/machineagent.jar:lib/slf4j-api-1.7.36.jar" \
   -d build/classes \
-  src/com/singularity/ee/agent/systemagent/monitors/ArbitrarySqlMonitor.java```
+  src/com/singularity/ee/agent/systemagent/monitors/ArbitrarySqlMonitor.java
+```
 10. Run command `jar cfm SqlMonitor.jar META-INF/MANIFEST.MF -C build/classes .`
 11. This process compiles the source code into **build/classes** and creates the SqlMonitor.jar file which Machine Agent will use to connect to your Database
 12. Make sure that SqlMonitor.jar is placed under '$AGENT_HOME/monitors/ArbitrarySQLMonitor'
