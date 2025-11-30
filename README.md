@@ -2,6 +2,9 @@ Title:  Arbitrary SQL Monitor for AppDynamics
 Author: Todd Radel <tradel@appdynamics.com>
 Date:   7 April 2014
 
+Updated by Nick Kim <nkim2@cisco.com>
+Date: 30 Nov 2025
+
 
 # Arbitrary SQL Monitor for AppDynamics #
 
