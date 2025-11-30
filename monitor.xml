@@ -15,10 +15,10 @@
 
     <task-arguments>
       <argument name="driver-class" is-required="false" default-value="com.intersys.jdbc.CacheDriver" />
-      <argument name="url" is-required="true" default-value="jdbc:Cache://10.90.10.48:56772/TRAIN-TRAK" />
-      <argument name="username" is-required="false" default-value="bwc$mts" />
-      <argument name="password" is-required="false" default-value="PvFUJM02ZQ4rULz" />
-      <argument name="sql" is-required="false" default-value="SELECT 1" />
+      <argument name="url" is-required="true" default-value="jdbc:Cache://address:port/db_namespace" />
+      <argument name="username" is-required="false" default-value="id" />
+      <argument name="password" is-required="false" default-value="password" />
+      <argument name="sql" is-required="false" default-value="custom_query" />
     </task-arguments>
 
     <java-task>
