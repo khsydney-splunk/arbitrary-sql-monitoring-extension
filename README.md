@@ -19,10 +19,31 @@ This extension requires the Java Machine Agent.
 
 1. Download ArbitrarySQLMonitor.zip from the Community site.
 2. Copy ArbitrarySQLMonitor.zip into the directory where you installed the machine agent, under `$AGENT_HOME/monitors`.
-3. Unzip the file. This will create a new directory called ArbitrarySQLMonitor.
-4. In `$AGENT_HOME/monitors/ArbitrarySQLMonitor`, edit the file monitor.xml and configure the plugin.
-5. Copy your JDBC driver jarfile into `$AGENT_HOME/monitors/ArbitrarySQLMonitor/lib`.
-5. Restart the machine agent.
+3. Unzip the file and rename **arbitrary-sql-monitoring-extension** with shorter name such as **ArbitrarySQLMonitor**.
+4. Now you have directories with below structure:
+5. monitors/
+    ArbitrarySQLMonitor/
+      build/
+      build.xml
+      lib/
+      META-INF/
+      monitor.xml
+      src/
+      README.md
+
+6. In `$AGENT_HOME/monitors/ArbitrarySQLMonitor`, edit the file monitor.xml by following instruction below.
+7. Find the right JDBC driver to connect Database and copy jarfile into `$AGENT_HOME/monitors/ArbitrarySQLMonitor/lib`.
+8. From `$AGENT_HOME/monitors/ArbitrarySQLMonitor/', Run command 'mkdir -p build/classes'
+9. Run command 'javac \
+  --release 11 \
+  -cp "lib/commons-lang-2.4.jar:lib/machineagent.jar:lib/slf4j-api-1.7.36.jar" \
+  -d build/classes \
+  src/com/singularity/ee/agent/systemagent/monitors/ArbitrarySqlMonitor.java'
+10. Run command 'jar cfm SqlMonitor.jar META-INF/MANIFEST.MF -C build/classes .'
+11. This process compiles the source code into **build/classes** and creates the SqlMonitor.jar file which Machine Agent will use to connect to your Database
+12. Make sure that SqlMonitor.jar is placed under '$AGENT_HOME/monitors/ArbitrarySQLMonitor'
+13. Restart the machine agent.
+14. When you check machine-agent.log, Check the log if it has '**Starting arbitrary SQL execution monitor**' which indicates the extension is loaded and trying to connect DB.
 
 
 ## Configuration ##
@@ -50,7 +71,14 @@ sql
 metric-path
 : (Optional) Path in the metric tree where the metrics should be placed. If not
   specified, the metrics will be placed under "Custom Metrics|SQLMonitor".
-        
+
+Make sure this section has **your Database jdbc.jar** as below: (cachejdbc.jar is an exampple and replace with your jar and make sure it's under **$AGENT_HOME/monitors/ArbitrarySQLMonitor/lib** ) and it has slf4j-api-1.7.36.jar for logging into machine-agent.log from ArbitrarySqlMonitor
+<java-task>
+      <classpath>
+        SqlMonitor.jar:lib/commons-lang-2.4.jar:lib/machineagent.jar:lib/cachejdbc.jar:lib/slf4j-api-1.7.36.jar
+      </classpath>
+      <impl-class>com.singularity.ee.agent.systemagent.monitors.ArbitrarySqlMonitor</impl-class>
+    </java-task>
 
 ## JDBC Driver Reference ##
 
